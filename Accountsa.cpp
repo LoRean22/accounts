@@ -1,40 +1,47 @@
-﻿#include <iostream>
+#include <iostream>
+#include <string>
 
 using namespace std;
 
-int account;
-string name;
-double balance;
-double newBalance;
-
-struct Accounts
-{
-    int m_account;
-    string m_name;
-    double m_balance;
+struct Account {
+	int account = 0;
+	string name;
+	double bank = 0;
 };
 
-double editBalance ()
-{
-    cout << "Введите номер счета: ";
-    cin >> account;
-    cout << "Введите имя владельца: ";
-    cin >> name;
-    cout << "Введите баланс: ";
-    cin >> balance;
-    cout << "Введите новый баланс: ";
-    cin >> newBalance;
-    return balance = newBalance;
-    //cout << "Ваш счет: " << name << " " << account << " " << newBalance;
+void accountUpdate(Account& ac) {
+	
+	int bank = 0;
+	cout << "Введите новый баланс: ";
+	cin >> bank;
+	
+	ac.bank = bank;
 }
 
-int main()
-{
-    setlocale(LC_ALL, "Russian");
+int main() {
+	setlocale(LC_ALL, "Russian");
+	
+	int numAc = 0;
+	string name;
+	double bank = 0;
 
-    editBalance();
+	cout << "Введите номер счета: ";
+	cin >> numAc;
+	while (numAc < 0) {
+		cout << "Номер счета отрицательное, измените свой счет: ";
+		cin >> numAc;
+	}
+	cout << "Введите имя владельца: ";
+	cin >> name;
+	cout << "Введите баланс: ";
+	cin >> bank;
+	
+	Account p;
+	p.account = numAc;
+	p.name = name;
+	p.bank = bank;
 
-    Accounts tes{account, name, balance};
+	accountUpdate(p);
 
-    cout << "Ваш счет: " << tes.m_name << ", " << tes.m_account << ", " << tes.m_balance;
+	cout << "Ваш счет: " << p.name << ", " << p.account << ", " << p.bank;
 }
